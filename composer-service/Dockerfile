@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk11-openj9:alpine-jre
 # Add Maven dependencies (not shaded into the artifact; Docker-cached)
 ADD /composer/target/lib  /lib
 ARG JAR_FILE
