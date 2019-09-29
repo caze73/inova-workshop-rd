@@ -1,6 +1,6 @@
 # Example integration-patterns
 
-[![Build Status](https://travis-ci.org/rewe-digital/integration-patterns.svg?branch=master)](https://travis-ci.org/rewe-digital/integration-patterns)
+[![Build Status](https://travis-ci.org/caze73/inova-workshop-rd.svg?branch=master)](https://travis-ci.org/caze73/inova-workshop-rd)
 
 This project is based on the REWE digital project: [Integration Patterns](https://github.com/rewe-digital/integration-patterns)
 
