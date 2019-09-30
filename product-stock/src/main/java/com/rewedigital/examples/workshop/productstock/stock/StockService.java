@@ -1,17 +1,21 @@
 package com.rewedigital.examples.workshop.productstock.stock;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class StockService {
 
-    private Map<String, Stock> productStock = new HashMap<>();
+    private final JpaStockRepository stockRepository;
+
+    @Autowired
+    public StockService(JpaStockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
 
     public Stock getStock(String productId) {
-        return productStock.getOrDefault(productId,
+
+        return stockRepository.findById(productId).orElse(
                 new Stock.Builder()
                         .withProductId(productId)
                         .withAmount(0)
@@ -21,12 +25,10 @@ public class StockService {
 
     public Stock setStock(String productId, int amount) {
 
-        var stock = productStock.computeIfAbsent(productId, id ->
-                new Stock.Builder()
-                        .withProductId(id)
-                        .build()
-        );
+        var stock = getStock(productId);
+
         stock.setAmount(amount);
+        stockRepository.save(stock);
 
         return stock;
     }

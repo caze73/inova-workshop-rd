@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Stock {
 
+    @Id
+    @Column(name = "id")
     private String productId;
 
     private int amount;
