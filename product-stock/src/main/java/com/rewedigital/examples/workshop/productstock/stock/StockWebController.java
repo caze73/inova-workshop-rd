@@ -11,11 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class StockWebController {
 
+    private final StockService stockService;
+
+    @Autowired
+    public StockWebController(StockService stockService) {
+        this.stockService = stockService;
+    }
+
     @GetMapping("/stock/{productId}")
-    public String productStock(@PathVariable("productId") final String productId,
+    public ModelAndView productStock(@PathVariable("productId") final String productId,
                                      HttpServletResponse response) {
 
-        return "stock";
+        var result = new ModelAndView("stock");
+        var stock = stockService.getStock(productId);
+
+        result.addObject("stock", stock);
+
+        return result;
     }
 
 }
